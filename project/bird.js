@@ -28,12 +28,29 @@ app.set('port', process.env.PORT || 3000);
 // establish public directories
 app.use(express.static(__dirname + '/public'));
 
+// set home page header flag to true if on home page
+app.use(function(req, res, next) {
+    res.locals.isHome = req.path === '/';
+    next();
+});
+
 /***********************************************************************************
 |                                      Routes                                      |
 ************************************************************************************/
 
+// route for home page
 app.get('/', function(req, res) {
     res.render('home');
+});
+
+// route for bird search page
+app.get('/bird-search', function(req, res) {
+    res.render('bird-search');
+});
+
+// route for contact page
+app.get('/contact', function(req, res) {
+    res.render('contact');
 });
 
 /***********************************************************************************

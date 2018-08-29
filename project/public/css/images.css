@@ -1,0 +1,9 @@
+/**
+ *  This is were CSS for images ONLY goes
+ */
+
+.header-logo {
+    width: 2em;
+    height: 2em;
+    padding: 2px;
+}

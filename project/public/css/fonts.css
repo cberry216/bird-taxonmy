@@ -1,0 +1,21 @@
+/**
+ *  This is were CSS for fonts ONLY goes
+ */
+
+.header-brand h3, .cover-title, .find-bird-button {
+    color: #FFC125;
+    text-shadow: 0 0 2px #ffe8af;
+}
+
+.cover-title {
+    font-size: 5em;
+}
+
+.cover-subtitle {
+    font-size: 1.25em;
+    color: #313822
+}
+
+.inner-footer {
+    color: #667937;
+}

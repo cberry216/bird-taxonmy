@@ -1,0 +1,47 @@
+/**
+ *  This is were CSS for classes ONLY goes
+ */
+
+.header-brand {
+    float: left;
+    display: flex;
+}
+
+.header-brand:hover, .header-brand:hover h3 {
+    cursor: pointer;
+    text-shadow: 0 0 0px;
+}
+
+.header-nav {
+    float: right;
+}
+
+.inner-header {
+    height: 100%;
+    width: 90%;
+    display: flex;
+}
+
+.inner-footer {
+    width: 90%;
+    height: 100%;
+    display: block;
+}
+
+.nav-link {
+    text-shadow: 0 0 2px #ffe8af;
+}
+
+.cover-title {
+    width: 93%;
+}
+
+.find-bird-button {
+    width: 10em;
+    height: 5em;
+}
+
+.find-bird-button:hover {
+    box-shadow: 0 0 10px 3px #ffe8af;
+    text-shadow: 0 0 0px;
+}

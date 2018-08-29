@@ -1,0 +1,17 @@
+/** These are styles of the main website elements - body, input, button,
+ * ul, ol, etc. In this section, we use mainly HTML tags and attribute 
+ * selectors, in exceptional cases - classes (for example, if you have 
+ * JavaScript-style selections)
+ */
+
+html, body {
+    height: 100%;
+}
+
+header {
+    background-color: #434b2f;
+}
+
+footer {
+    background-color: #434b2f;
+}
