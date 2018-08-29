@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/cberry216/bird-taxonmy/issues"
   },
-  "homepage": "https://github.com/cberry216/bird-taxonmy#readme"
+  "homepage": "https://github.com/cberry216/bird-taxonmy#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
 }
