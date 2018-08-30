@@ -2,6 +2,10 @@
  *  This is were CSS for fonts ONLY goes
  */
 
+body {
+    font-family: 'FuturaRennerLight' !important;
+}
+
 .header-brand h3, .cover-title, .find-bird-button {
     color: #FFC125;
     text-shadow: 0 0 2px #ffe8af;
