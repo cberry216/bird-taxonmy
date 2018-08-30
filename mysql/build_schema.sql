@@ -52,18 +52,26 @@ CREATE TABLE bird_type (
 
 /**
  * How Locations Work:
- *     The location field is an int but the value will be treated as a 16-
- *  bit integer. There are 16 locations covering the United States and each
- *  location is represent as a single bit in a unique index. For example,
- *  say a bird is located in the Florida Keys, Eastern North, and
- *  California, then the location value will look as followed:
- *      Florida Keys  = 0b0000000000000100
- *      Eastern North = 0b0000000000000010
- *      California    = 0b0000010000000000
- *      ______________+___________________
- *      Location      = 0b0000010000000110 = 1030
- *  Essentially the location is the | (OR) of all locations the bird can be
- *  seen.
+ *     The location of a bird is made up of 2 numbers, denoted as
+ *  <time_period_location>_x or <time_period_location>_y. The first
+ *  number is represent as 25-bit number where each bit denotes the
+ *  columns of a map of North America where the bird is found. The second
+ *  number represents a 10-bit number where each bit denotes the rows of
+ *  a map of North America where the bird is found. For example:
+ *       0 1 2 3 4 5 6 7 8 9 1011121314151617181920212223
+ *     0 |_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     1 |_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     2 |_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     3 |_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     4 |_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     5 |_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     6 |_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     7 |_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     8 |_|_|_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *     9 |_|_|_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|
+ *      can be denotes as:
+ *          pos_x = 011111111110000000000000
+ *          pos_y = 1111111111
  */
 
 -- table for bird
@@ -71,14 +79,18 @@ CREATE TABLE bird (
     bird_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(60) NOT NULL,
     bird_type_id INT,
-    winter_location INT,
-    summer_location INT,
-    yearly_location INT,
-    migration_location INT,
-    length FLOAT NOT NULL,
-    width FLOAT NOT NULL,
-    weight FLOAT NOT NULL,
-    gender ENUM('M', 'F'),
+    winter_location_x INT,
+    winter_location_y INT,
+    summer_location_x INT,
+    summer_location_y INT,
+    yearly_location_x INT,
+    yearly_location_y INT,
+    migration_location_x INT,
+    migration_location_y INT,
+    length FLOAT NOT NULL,    -- in inches
+    wingspan FLOAT NOT NULL,  -- in inches
+    weight FLOAT NOT NULL,    -- in pounds
+    gender ENUM('M', 'F', 'B'),
 # colors
     # head
     cheek_color INT,
@@ -97,7 +109,7 @@ CREATE TABLE bird (
     belly_color INT,
     breast_color INT,
     femoral_tract_color INT,
-    flanks_color INT,
+    flank_color INT,
     mantle_color INT,
     scapulars_color INT,
     sides_color INT,
@@ -105,7 +117,7 @@ CREATE TABLE bird (
     vent_color INT,
     # wings
     alula_color INT,
-    axillaries_color INT,
+    axillary_color INT,
     greater_primary_coverts_color INT,
     greater_secondary_coverts_color INT,
     lesser_secondary_coverts_color INT,
@@ -120,6 +132,7 @@ CREATE TABLE bird (
     # body parts
     tarsus_color INT,
     toes_color INT,
+    neck_color INT,
     CONSTRAINT pf_bird_id PRIMARY KEY (bird_id),
     CONSTRAINT fk_bird_type FOREIGN KEY (bird_type_id) REFERENCES bird_type (bird_type_id)
 );
@@ -168,45 +181,166 @@ INSERT INTO location (location_code, name) VALUES (16384, 'ARCITC');
 INSERT INTO location (location_code, name) VALUES (32768, 'GREENLAND');
 
 -- adding bird types to bird type table
-INSERT INTO bird_type (name) VALUES ('LOONS AND GREBES');
-INSERT INTO bird_type (name) VALUES ('TUBENOSES');
-INSERT INTO bird_type (name) VALUES ('PELECANIFORMES');
-INSERT INTO bird_type (name) VALUES ('ANHINGA AND CORMORANTS');
-INSERT INTO bird_type (name) VALUES ('WADING BIRDS');
-INSERT INTO bird_type (name) VALUES ('SWANS AND GEESE');
-INSERT INTO bird_type (name) VALUES ('DABBLING DUCKS');
-INSERT INTO bird_type (name) VALUES ('DIVING DUCKS');
-INSERT INTO bird_type (name) VALUES ('DIURNAL RAPTORS');
-INSERT INTO bird_type (name) VALUES ('UPLAND GAME BIRDS');
-INSERT INTO bird_type (name) VALUES ('GRUIFORMES');
-INSERT INTO bird_type (name) VALUES ('SHOREBIRDS');
-INSERT INTO bird_type (name) VALUES ('SKUAS, JAEGERS, AND GULLS');
-INSERT INTO bird_type (name) VALUES ('TERNS AND SKIMMERS');
-INSERT INTO bird_type (name) VALUES ('ALCIDS');
-INSERT INTO bird_type (name) VALUES ('PIGEONS AND DOVES');
-INSERT INTO bird_type (name) VALUES ('PARROTS AND THEIR ALLIES');
-INSERT INTO bird_type (name) VALUES ('CUCKOOS AND THE ALLIES');
-INSERT INTO bird_type (name) VALUES ('OWLS');
-INSERT INTO bird_type (name) VALUES ('GOATSUCKERS');
-INSERT INTO bird_type (name) VALUES ('SWIFTS');
-INSERT INTO bird_type (name) VALUES ('HUMMINGBIRDS');
-INSERT INTO bird_type (name) VALUES ('KINGFISHERS');
-INSERT INTO bird_type (name) VALUES ('WOODPECKERS');
-INSERT INTO bird_type (name) VALUES ('TYRANT FLYCATCHERS');
-INSERT INTO bird_type (name) VALUES ('SHRIKES AND VIREOS');
-INSERT INTO bird_type (name) VALUES ('JAYS, CROWS, AND THEIR ALLIES');
-INSERT INTO bird_type (name) VALUES ('LARKS');
-INSERT INTO bird_type (name) VALUES ('SWALLOWS');
-INSERT INTO bird_type (name) VALUES ('CHICKADEES, NUTHATCHES, AND THEIR ALLIES');
-INSERT INTO bird_type (name) VALUES ('WRENS');
-INSERT INTO bird_type (name) VALUES ('DIPPER, KINGLETS, AND GNATCATCHERS');
-INSERT INTO bird_type (name) VALUES ('THRUSHES');
-INSERT INTO bird_type (name) VALUES ('MIMIDS');
-INSERT INTO bird_type (name) VALUES ('PIPITS');
-INSERT INTO bird_type (name) VALUES ('WAXWINGS');
-INSERT INTO bird_type (name) VALUES ('STARLINGS, MYNAS, AND BULBUL');
-INSERT INTO bird_type (name) VALUES ('WOOD-WARBLERS');
-INSERT INTO bird_type (name) VALUES ('TANAGERS, CARDINALS, AND THEIR ALLIES');
-INSERT INTO bird_type (name) VALUES ('EMBERIZINE SPARROWS AND THEIR ALLIES');
-INSERT INTO bird_type (name) VALUES ('ICTERIDS');
-INSERT INTO bird_type (name) VALUES ('FINCHES AND OLD WORLD SPARROWS');
+INSERT INTO bird_type (name) VALUES ('LOON');
+INSERT INTO bird_type (name) VALUES ('GREBE');
+INSERT INTO bird_type (name) VALUES ('FULMAR');
+INSERT INTO bird_type (name) VALUES ('PETREL');
+INSERT INTO bird_type (name) VALUES ('SHEARWATER');
+INSERT INTO bird_type (name) VALUES ('STORM-PETREL');
+INSERT INTO bird_type (name) VALUES ('BOOBY');
+INSERT INTO bird_type (name) VALUES ('FRIGATEBIRD');
+INSERT INTO bird_type (name) VALUES ('GANNET');
+INSERT INTO bird_type (name) VALUES ('PELICAN');
+INSERT INTO bird_type (name) VALUES ('TROPICBIRD');
+INSERT INTO bird_type (name) VALUES ('ANHINGA');
+INSERT INTO bird_type (name) VALUES ('CORMORANTS');
+INSERT INTO bird_type (name) VALUES ('BITTERNS');
+INSERT INTO bird_type (name) VALUES ('EGRETS');
+INSERT INTO bird_type (name) VALUES ('FLAMINGO');
+INSERT INTO bird_type (name) VALUES ('HERON');
+INSERT INTO bird_type (name) VALUES ('IBIS');
+INSERT INTO bird_type (name) VALUES ('NIGHT-HERON');
+INSERT INTO bird_type (name) VALUES ('SPOONBILL');
+INSERT INTO bird_type (name) VALUES ('STORK');
+INSERT INTO bird_type (name) VALUES ('DOMESTIC WATERFOWL');
+INSERT INTO bird_type (name) VALUES ('EXOTIC WATERFOWL');
+INSERT INTO bird_type (name) VALUES ('GOOSE');
+INSERT INTO bird_type (name) VALUES ('SWAN');
+INSERT INTO bird_type (name) VALUES ('PUDDLE DUCK');
+INSERT INTO bird_type (name) VALUES ('TEAL');
+INSERT INTO bird_type (name) VALUES ('WHISTLING-DUCK');
+INSERT INTO bird_type (name) VALUES ('WIGEON');
+INSERT INTO bird_type (name) VALUES ('EIDER');
+INSERT INTO bird_type (name) VALUES ('GOLDENEYE');
+INSERT INTO bird_type (name) VALUES ('MERGANSER');
+INSERT INTO bird_type (name) VALUES ('SCAUP');
+INSERT INTO bird_type (name) VALUES ('SCOTER');
+INSERT INTO bird_type (name) VALUES ('CARACARA');
+INSERT INTO bird_type (name) VALUES ('EAGLE');
+INSERT INTO bird_type (name) VALUES ('FALCON');
+INSERT INTO bird_type (name) VALUES ('HAWK');
+INSERT INTO bird_type (name) VALUES ('KITE');
+INSERT INTO bird_type (name) VALUES ('NEW WORLD VULTURE');
+INSERT INTO bird_type (name) VALUES ('OSPREY');
+INSERT INTO bird_type (name) VALUES ('CHACHALACA');
+INSERT INTO bird_type (name) VALUES ('CHUKAR');
+INSERT INTO bird_type (name) VALUES ('EXOTIC GAME BIRD');
+INSERT INTO bird_type (name) VALUES ('GROUSE');
+INSERT INTO bird_type (name) VALUES ('PARTRIDGE');
+INSERT INTO bird_type (name) VALUES ('PHEASANT');
+INSERT INTO bird_type (name) VALUES ('PRAIRIE-CHICKEN');
+INSERT INTO bird_type (name) VALUES ('PTARMIGAN');
+INSERT INTO bird_type (name) VALUES ('QUAIL');
+INSERT INTO bird_type (name) VALUES ('TURKEY');
+INSERT INTO bird_type (name) VALUES ('COOT');
+INSERT INTO bird_type (name) VALUES ('CRANE');
+INSERT INTO bird_type (name) VALUES ('GALLINULE');
+INSERT INTO bird_type (name) VALUES ('LIMPKIN');
+INSERT INTO bird_type (name) VALUES ('MOORHEN');
+INSERT INTO bird_type (name) VALUES ('RAIL');
+INSERT INTO bird_type (name) VALUES ('SORA');
+INSERT INTO bird_type (name) VALUES ('AVOCET');
+INSERT INTO bird_type (name) VALUES ('CURLEW');
+INSERT INTO bird_type (name) VALUES ('DOWITCHER');
+INSERT INTO bird_type (name) VALUES ('GODWIT');
+INSERT INTO bird_type (name) VALUES ('JACANA');
+INSERT INTO bird_type (name) VALUES ('LAPWING');
+INSERT INTO bird_type (name) VALUES ('OYSTERCATCHER');
+INSERT INTO bird_type (name) VALUES ('PHALAROPE');
+INSERT INTO bird_type (name) VALUES ('PLOVER');
+INSERT INTO bird_type (name) VALUES ('RUFF');
+INSERT INTO bird_type (name) VALUES ('SANDPIPER');
+INSERT INTO bird_type (name) VALUES ('SNIPE');
+INSERT INTO bird_type (name) VALUES ('STILT');
+INSERT INTO bird_type (name) VALUES ('TURNSTONE');
+INSERT INTO bird_type (name) VALUES ('WHIMBREL');
+INSERT INTO bird_type (name) VALUES ('WILLET');
+INSERT INTO bird_type (name) VALUES ('WOODCOCK');
+INSERT INTO bird_type (name) VALUES ('YELLOWLEG');
+INSERT INTO bird_type (name) VALUES ('SKUA');
+INSERT INTO bird_type (name) VALUES ('JAEGER');
+INSERT INTO bird_type (name) VALUES ('GULL');
+INSERT INTO bird_type (name) VALUES ('TERN');
+INSERT INTO bird_type (name) VALUES ('SKIMMER');
+INSERT INTO bird_type (name) VALUES ('DOVEKIE');
+INSERT INTO bird_type (name) VALUES ('GUILLEMOT');
+INSERT INTO bird_type (name) VALUES ('MURRELETS');
+INSERT INTO bird_type (name) VALUES ('PIGEON');
+INSERT INTO bird_type (name) VALUES ('DOVE');
+INSERT INTO bird_type (name) VALUES ('PARROT');
+INSERT INTO bird_type (name) VALUES ('ANI');
+INSERT INTO bird_type (name) VALUES ('CUCKOO');
+INSERT INTO bird_type (name) VALUES ('ROADRUNNER');
+INSERT INTO bird_type (name) VALUES ('OWL');
+INSERT INTO bird_type (name) VALUES ('NIGHTHAWK');
+INSERT INTO bird_type (name) VALUES ('NIGHTJAR');
+INSERT INTO bird_type (name) VALUES ('SWIFT');
+INSERT INTO bird_type (name) VALUES ('HUMMINGBIRD');
+INSERT INTO bird_type (name) VALUES ('KINGFISHER');
+INSERT INTO bird_type (name) VALUES ('WOODPECKER');
+INSERT INTO bird_type (name) VALUES ('FLYCATCHER');
+INSERT INTO bird_type (name) VALUES ('KINGBIRD');
+INSERT INTO bird_type (name) VALUES ('PEWEE');
+INSERT INTO bird_type (name) VALUES ('PHOEBE');
+INSERT INTO bird_type (name) VALUES ('WOOD-PEWEE');
+INSERT INTO bird_type (name) VALUES ('SHRIKE');
+INSERT INTO bird_type (name) VALUES ('VIREO');
+INSERT INTO bird_type (name) VALUES ('CROW');
+INSERT INTO bird_type (name) VALUES ('JAY');
+INSERT INTO bird_type (name) VALUES ('MAGPIE');
+INSERT INTO bird_type (name) VALUES ('RAVEN');
+INSERT INTO bird_type (name) VALUES ('SCRUB-JAY');
+INSERT INTO bird_type (name) VALUES ('LARK');
+INSERT INTO bird_type (name) VALUES ('SWALLOW');
+INSERT INTO bird_type (name) VALUES ('BUSHTIT');
+INSERT INTO bird_type (name) VALUES ('CHICKADEE');
+INSERT INTO bird_type (name) VALUES ('CREEPER');
+INSERT INTO bird_type (name) VALUES ('NUTHATCH');
+INSERT INTO bird_type (name) VALUES ('TITMOUSE');
+INSERT INTO bird_type (name) VALUES ('VERDIN');
+INSERT INTO bird_type (name) VALUES ('WREN');
+INSERT INTO bird_type (name) VALUES ('DIPPER');
+INSERT INTO bird_type (name) VALUES ('KINGLET');
+INSERT INTO bird_type (name) VALUES ('GNATCATCHER');
+INSERT INTO bird_type (name) VALUES ('BLUEBIRD');
+INSERT INTO bird_type (name) VALUES ('ROBIN');
+INSERT INTO bird_type (name) VALUES ('THRUSH');
+INSERT INTO bird_type (name) VALUES ('CATBIRD');
+INSERT INTO bird_type (name) VALUES ('MOCKINBIRD');
+INSERT INTO bird_type (name) VALUES ('THRASHER');
+INSERT INTO bird_type (name) VALUES ('PIPIT');
+INSERT INTO bird_type (name) VALUES ('WAXWING');
+INSERT INTO bird_type (name) VALUES ('STARLING');
+INSERT INTO bird_type (name) VALUES ('MYNA');
+INSERT INTO bird_type (name) VALUES ('BULBUL');
+INSERT INTO bird_type (name) VALUES ('CHAT');
+INSERT INTO bird_type (name) VALUES ('OVENBIRD');
+INSERT INTO bird_type (name) VALUES ('PARULA');
+INSERT INTO bird_type (name) VALUES ('REDSTART');
+INSERT INTO bird_type (name) VALUES ('WARBLER');
+INSERT INTO bird_type (name) VALUES ('WATERTHRUSH');
+INSERT INTO bird_type (name) VALUES ('YELLOWTHROAT');
+INSERT INTO bird_type (name) VALUES ('BANANAQUIT');
+INSERT INTO bird_type (name) VALUES ('CARDINALINE BUNTING');
+INSERT INTO bird_type (name) VALUES ('CARDINAL');
+INSERT INTO bird_type (name) VALUES ('DICKCISSEL');
+INSERT INTO bird_type (name) VALUES ('GROSBEAK');
+INSERT INTO bird_type (name) VALUES ('TANAGER');
+INSERT INTO bird_type (name) VALUES ('EMBERIZINE BUNTING');
+INSERT INTO bird_type (name) VALUES ('JUNCO');
+INSERT INTO bird_type (name) VALUES ('LONGSPUR');
+INSERT INTO bird_type (name) VALUES ('SPARROW');
+INSERT INTO bird_type (name) VALUES ('TOWHEE');
+INSERT INTO bird_type (name) VALUES ('BLACKBIRD');
+INSERT INTO bird_type (name) VALUES ('BOBOLINK');
+INSERT INTO bird_type (name) VALUES ('COWBIRD');
+INSERT INTO bird_type (name) VALUES ('GRACKLE');
+INSERT INTO bird_type (name) VALUES ('MEADOWLARK');
+INSERT INTO bird_type (name) VALUES ('ORIOLE');
+INSERT INTO bird_type (name) VALUES ('CROSSBILL');
+INSERT INTO bird_type (name) VALUES ('FINCH');
+INSERT INTO bird_type (name) VALUES ('GOLDFINCH');
+INSERT INTO bird_type (name) VALUES ('OLD WORLD SPARROW');
+INSERT INTO bird_type (name) VALUES ('REDPOLL');
+INSERT INTO bird_type (name) VALUES ('SISKIN');
+
