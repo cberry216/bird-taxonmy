@@ -25,6 +25,12 @@ app.set('port', process.env.PORT || 3000);
 |                                    Middleware                                    |
 ************************************************************************************/
 
+// show tests if test=1 in querystring
+app.use(function(req, res, next) {
+    res.locals.showTests = app.get('env') !== 'production' && req.query.test === '1';
+    next();
+});
+
 // establish public directories
 app.use(express.static(__dirname + '/public'));
 
@@ -40,7 +46,9 @@ app.use(function(req, res, next) {
 
 // route for home page
 app.get('/', function(req, res) {
-    res.render('home');
+    res.render('home', {
+        pageTestScript: '/qa/page-tests/test-home.js'
+    });
 });
 
 // route for bird search page
@@ -66,3 +74,11 @@ app.listen(app.get('port'), function() {
     console.log('Express started on http://localhost:' + 
         app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+module.exports = app;
+if(!module.parent) {
+    app.listen(app.get('port'), function() {
+        console.log('Express started on http://localhost:' + 
+        app.get('port') + '; press Ctrl-C to terminate.');
+    });
+}
