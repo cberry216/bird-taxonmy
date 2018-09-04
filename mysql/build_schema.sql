@@ -19,14 +19,6 @@ CREATE TABLE style (
     CONSTRAINT pk_style PRIMARY KEY (style_id)
 );
 
--- table for location
-CREATE TABLE location (
-    location_id INT NOT NULL AUTO_INCREMENT,
-    location_code INT NOT NULL,
-    name VARCHAR(30) NOT NULL,
-    CONSTRAINT pk_location PRIMARY KEY (location_id)
-);
-
 -- table for bird_type
 CREATE TABLE bird_type (
     bird_type_id INT NOT NULL AUTO_INCREMENT,
@@ -49,44 +41,11 @@ CREATE TABLE bird_type (
  *  greater number will be further to the left. Since there are only two
  *  colors, the third digit is 0x0, meaning there is no third color.
  */
-
-/**
- * How Locations Work:
- *     The location of a bird is made up of 2 numbers, denoted as
- *  <time_period_location>_x or <time_period_location>_y. The first
- *  number is represent as 25-bit number where each bit denotes the
- *  columns of a map of North America where the bird is found. The second
- *  number represents a 10-bit number where each bit denotes the rows of
- *  a map of North America where the bird is found. For example:
- *       0 1 2 3 4 5 6 7 8 9 1011121314151617181920212223
- *     0 |_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     1 |_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     2 |_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     3 |_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     4 |_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     5 |_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     6 |_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     7 |_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     8 |_|_|_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *     9 |_|_|_|_|_|_|_|_|_|X|X|_|_|_|_|_|_|_|_|_|_|_|_|_|
- *      can be denotes as:
- *          pos_x = 011111111110000000000000
- *          pos_y = 1111111111
- */
-
 -- table for bird
 CREATE TABLE bird (
     bird_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(60) NOT NULL,
-    bird_type_id INT,
-    winter_location_x INT,
-    winter_location_y INT,
-    summer_location_x INT,
-    summer_location_y INT,
-    yearly_location_x INT,
-    yearly_location_y INT,
-    migration_location_x INT,
-    migration_location_y INT,
+    bird_type_id INT NOT NULL,
     length FLOAT NOT NULL,    -- in inches
     wingspan FLOAT NOT NULL,  -- in inches
     weight FLOAT NOT NULL,    -- in pounds
@@ -137,6 +96,16 @@ CREATE TABLE bird (
     CONSTRAINT fk_bird_type FOREIGN KEY (bird_type_id) REFERENCES bird_type (bird_type_id)
 );
 
+-- table for location
+CREATE TABLE location (
+    location_id INT NOT NULL AUTO_INCREMENT,
+    x_location INT NOT NULL,
+    y_location INT NOT NULL,
+    bird_id INT,
+    CONSTRAINT pk_location PRIMARY KEY (location_id),
+    CONSTRAINT fk_bird_location FOREIGN KEY (bird_id) REFERENCES bird (bird_id)
+);
+
 -- adding colors to color table
 INSERT INTO color (color_code, name) VALUES (0,  'NONE');
 INSERT INTO color (color_code, name) VALUES (1,  'GREEN');
@@ -161,24 +130,6 @@ INSERT INTO style (style_code, name) VALUES (1, 'STRIPED');
 INSERT INTO style (style_code, name) VALUES (2, 'DOTTED');
 INSERT INTO style (style_code, name) VALUES (3, 'MIXED');
 INSERT INTO style (style_code, name) VALUES (4, 'FADE');
-
--- adding locations to location table
-INSERT INTO location (location_code, name) VALUES (1,     'EASTERN SOUTH');
-INSERT INTO location (location_code, name) VALUES (2,     'EASTERN NORTH');
-INSERT INTO location (location_code, name) VALUES (4,     'FLORIDA KEYS');
-INSERT INTO location (location_code, name) VALUES (8,     'FLORIDA');
-INSERT INTO location (location_code, name) VALUES (16,    'NEWFOUNDLAND');
-INSERT INTO location (location_code, name) VALUES (32,    'TAIGA');
-INSERT INTO location (location_code, name) VALUES (64,    'GREAT PLAINS');
-INSERT INTO location (location_code, name) VALUES (128,   'SOUTHWEST');
-INSERT INTO location (location_code, name) VALUES (256,   'GREAT BASIN');
-INSERT INTO location (location_code, name) VALUES (512,   'ROCKY MOUNTAINS');
-INSERT INTO location (location_code, name) VALUES (1024,  'CALIFORNIA');
-INSERT INTO location (location_code, name) VALUES (2048,  'PACIFIC NORTHWEST');
-INSERT INTO location (location_code, name) VALUES (4096,  'QUEEN CHARLOTTE ISLANDS');
-INSERT INTO location (location_code, name) VALUES (8192,  'MEXICAN');
-INSERT INTO location (location_code, name) VALUES (16384, 'ARCITC');
-INSERT INTO location (location_code, name) VALUES (32768, 'GREENLAND');
 
 -- adding bird types to bird type table
 INSERT INTO bird_type (name) VALUES ('LOON');
