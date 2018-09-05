@@ -2,6 +2,11 @@ var express = require("express");
 var handlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
 
+// Bringing in our routes
+var home = require("./routes/home");
+var contact = require("./routes/contact");
+var birdSearch = require("./routes/birdSearch");
+
 /*******************************************************************************
 |                                   Initial Setup                              |
 *******************************************************************************/
@@ -45,25 +50,26 @@ app.use(function(req, res, next) {
 |                                      Routes                                  |
 *******************************************************************************/
 
-// route for home page
-app.get("/", function(req, res) {
-  res.render("home");
-});
-
-// route for bird search page
-app.get("/bird-search", function(req, res) {
-  res.render("bird-search");
-});
-
-// route for contact page
-app.get("/contact", function(req, res) {
-  res.render("contact");
-});
+app.use("/", home);
+app.use("/contact", contact);
+app.use("/bird-search", birdSearch);
 
 /*******************************************************************************
 |                                  Error Handling                              |
 *******************************************************************************/
 
+// route custom 404 page
+app.use(function(req, res) {
+  res.status(404);
+  res.render("errors/404");
+});
+
+// route custom 500 page
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500);
+  res.render("errors/500");
+});
 /*******************************************************************************
 |                               Running Application                            |
 *******************************************************************************/
