@@ -12,10 +12,6 @@
         <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/futura-renner" type="text/css"/>
         <link rel="shortcut icon" href="/img/eagle.ico">
 
-        {{#if showTests}}
-            <link rel="stylesheet" href="/vendor/mocha.css">
-        {{/if}}
-
     </head>
     <body class='text-center'>
         <div class='body-container d-flex w-100 h-100 flex-column'>
@@ -39,22 +35,9 @@
             </footer>
 
         </div>
-        {{#if showTests}}
-            <div id="mocha">
-                <script src="/vendor/mocha.js"></script>
-                <script src="/vendor/chai.js"></script>
-                <script>
-                    mocha.ui('tdd');
-                    assert = chai.assert;</script>
-                <script src="/qa/global-tests/test-global.js"></script>
-                {{#if pageTestScript}}
-                    <script src="{{pageTestScript}}"></script>
-                {{/if}}
-                <script>mocha.run();</script>
-            </div>
-        {{/if}}
+
         <!-- import bootstrap.js -->
-        
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- import jQuery -->
         <script src="/vendor/js/jquery-3.3.1.min.js"></script>
