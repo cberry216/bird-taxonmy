@@ -2,29 +2,35 @@
  *  This is were CSS for fonts ONLY goes
  */
 
+/* Sets the font to use Futura Renner Light */
 body {
   font-family: "FuturaRennerLight" !important;
 }
 
-.header-brand h3,
+/* Changes the font color and text shadow of cover titles, buttons, and header brands */
 .cover-title,
 .find-bird-button,
-.search-cover-title {
+.header-brand h3,
+.search-cover-title,
+.search-button {
   color: #ffc125;
   text-shadow: 0 0 2px #ffe8af;
 }
 
+/* Sets the font size of cover titles */
 .cover-title,
 .search-cover-title {
   font-size: 5em;
 }
 
+/* Sets the font size and color of cover subtitles */
 .cover-subtitle,
 .search-cover-subtitle {
   font-size: 1.25em;
   color: #313822;
 }
 
+/* Sets the color of the text in the footer */
 .inner-footer {
   color: #667937;
 }

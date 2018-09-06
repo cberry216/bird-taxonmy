@@ -2,32 +2,32 @@
  *  This is were CSS for overwriting Bootstrap or any other CSS ONLY goes
  */
 
-/* overwrite bootstrap background color */
+/* Overwrite bootstrap background color */
 body {
   background-color: #667937 !important;
 }
 
-/* overwrite bootstrap font color for nav links */
-.nav-link {
-  color: #ffc125 !important;
-}
-
-/* overwrite bootstrap default colors for button */
+/* Overwrite bootstrap default colors for button */
 .find-bird-button,
-.search-button-type {
+.search-button {
   background-color: #434b2f !important;
   border: #434b2f !important;
   color: #ffc125 !important;
 }
 
-/* overwrite bootstrap default hover colors for button */
+/* Overwrite bootstrap default hover colors for button */
 .find-bird-button:hover,
-.search-button-type:hover {
+.search-button:hover {
   background-color: #525c3a !important;
   border: #525c3a !important;
 }
 
-/* overwrite bootstrap default hover colors for nav-links */
+/* Overwrite bootstrap font color for nav links */
+.nav-link {
+  color: #ffc125 !important;
+}
+
+/* Overwrite bootstrap default hover colors for nav-links */
 .nav-link:hover {
   background-color: #525c3a;
   text-shadow: 0 0 0px;

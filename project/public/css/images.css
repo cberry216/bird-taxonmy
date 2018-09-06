@@ -2,8 +2,9 @@
  *  This is were CSS for images ONLY goes
  */
 
+/* Sets the width, height, and padding of logo in the header brand */
 .header-logo {
-    width: 2em;
-    height: 2em;
-    padding: 2px;
+  width: 2em;
+  height: 2em;
+  padding: 2px;
 }

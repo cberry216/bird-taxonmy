@@ -2,46 +2,62 @@
  *  This is were CSS for classes ONLY goes
  */
 
+/* Set the width of the 'cover-title' div on the homepage */
+.cover-title {
+  width: 93%;
+}
+
+/* Change dimensions of the 'find-bird-button' button on the homepage */
+.find-bird-button {
+  width: 10em;
+  height: 5em;
+}
+
+/* Gives off yellow glow and removes glow of text when hovering over 'find-bird-button' and 'search-button-type' */
+.find-bird-button:hover,
+.search-button:hover {
+  box-shadow: 0 0 10px 3px #ffe8af;
+  text-shadow: 0 0 0px;
+}
+
+/* Make header brand appear on the far left on the header */
 .header-brand {
   float: left;
   display: flex;
 }
 
+/* Remove text shadow and change cursor to pointer when hovering over header brand */
 .header-brand:hover,
 .header-brand:hover h3 {
   cursor: pointer;
   text-shadow: 0 0 0px;
 }
 
+/* Make the actual navbar appear on the far right of the header */
 .header-nav {
   float: right;
 }
 
+/* Give extra padding to the outsides of the header */
 .inner-header {
   height: 100%;
   width: 90%;
   display: flex;
 }
 
+/* Make elements in the footer appear in the center of the footer */
 .inner-footer {
   width: 90%;
   height: 100%;
   display: block;
 }
 
+/* Gives each navbar link a small glow */
 .nav-link {
   text-shadow: 0 0 2px #ffe8af;
 }
 
-.cover-title {
-  width: 93%;
-}
-
-.find-bird-button {
-  width: 10em;
-  height: 5em;
-}
-
+/* Allows for the positioning of the search cover image and name to appear centered on top of each other */
 .search-button-cover {
   vertical-align: top;
   display: inline-block;
@@ -50,18 +66,14 @@
   height: 10em;
 }
 
+/* Set size of search button cover image and give slight margin to top to center element */
 .search-button-cover-img {
   margin-top: 12%;
   width: 100px;
   height: 100px;
 }
 
+/* Sets the search button cover name to appear below the search button cover image */
 .search-button-cover-name {
   display: block;
-}
-
-.find-bird-button:hover,
-.search-button-type:hover {
-  box-shadow: 0 0 10px 3px #ffe8af;
-  text-shadow: 0 0 0px;
 }
