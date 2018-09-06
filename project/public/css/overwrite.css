@@ -4,29 +4,31 @@
 
 /* overwrite bootstrap background color */
 body {
-    background-color: #667937 !important;
+  background-color: #667937 !important;
 }
 
 /* overwrite bootstrap font color for nav links */
 .nav-link {
-    color: #FFC125 !important;
+  color: #ffc125 !important;
 }
 
 /* overwrite bootstrap default colors for button */
-.find-bird-button {
-    background-color: #434b2f !important;
-    border: #434b2f !important;
-    color: #FFC125 !important;
+.find-bird-button,
+.search-button-type {
+  background-color: #434b2f !important;
+  border: #434b2f !important;
+  color: #ffc125 !important;
 }
 
 /* overwrite bootstrap default hover colors for button */
-.find-bird-button:hover {
-    background-color: #525c3a !important;
-    border: #525c3a !important;
+.find-bird-button:hover,
+.search-button-type:hover {
+  background-color: #525c3a !important;
+  border: #525c3a !important;
 }
 
 /* overwrite bootstrap default hover colors for nav-links */
 .nav-link:hover {
-    background-color: #525c3a;
-    text-shadow: 0 0 0px;
+  background-color: #525c3a;
+  text-shadow: 0 0 0px;
 }

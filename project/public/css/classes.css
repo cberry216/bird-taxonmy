@@ -3,45 +3,65 @@
  */
 
 .header-brand {
-    float: left;
-    display: flex;
+  float: left;
+  display: flex;
 }
 
-.header-brand:hover, .header-brand:hover h3 {
-    cursor: pointer;
-    text-shadow: 0 0 0px;
+.header-brand:hover,
+.header-brand:hover h3 {
+  cursor: pointer;
+  text-shadow: 0 0 0px;
 }
 
 .header-nav {
-    float: right;
+  float: right;
 }
 
 .inner-header {
-    height: 100%;
-    width: 90%;
-    display: flex;
+  height: 100%;
+  width: 90%;
+  display: flex;
 }
 
 .inner-footer {
-    width: 90%;
-    height: 100%;
-    display: block;
+  width: 90%;
+  height: 100%;
+  display: block;
 }
 
 .nav-link {
-    text-shadow: 0 0 2px #ffe8af;
+  text-shadow: 0 0 2px #ffe8af;
 }
 
 .cover-title {
-    width: 93%;
+  width: 93%;
 }
 
 .find-bird-button {
-    width: 10em;
-    height: 5em;
+  width: 10em;
+  height: 5em;
 }
 
-.find-bird-button:hover {
-    box-shadow: 0 0 10px 3px #ffe8af;
-    text-shadow: 0 0 0px;
+.search-button-cover {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: 10em;
+  height: 10em;
+}
+
+.search-button-cover-img {
+  margin-top: 12%;
+  width: 100px;
+  height: 100px;
+}
+
+.search-button-cover-name {
+  display: block;
+}
+
+.find-bird-button:hover,
+.search-button-type:hover {
+  box-shadow: 0 0 10px 3px #ffe8af;
+  text-shadow: 0 0 0px;
 }

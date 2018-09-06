@@ -3,23 +3,28 @@
  */
 
 body {
-    font-family: 'FuturaRennerLight' !important;
+  font-family: "FuturaRennerLight" !important;
 }
 
-.header-brand h3, .cover-title, .find-bird-button {
-    color: #FFC125;
-    text-shadow: 0 0 2px #ffe8af;
+.header-brand h3,
+.cover-title,
+.find-bird-button,
+.search-cover-title {
+  color: #ffc125;
+  text-shadow: 0 0 2px #ffe8af;
 }
 
-.cover-title {
-    font-size: 5em;
+.cover-title,
+.search-cover-title {
+  font-size: 5em;
 }
 
-.cover-subtitle {
-    font-size: 1.25em;
-    color: #313822
+.cover-subtitle,
+.search-cover-subtitle {
+  font-size: 1.25em;
+  color: #313822;
 }
 
 .inner-footer {
-    color: #667937;
+  color: #667937;
 }
