@@ -42,8 +42,7 @@ app.use(express.static(__dirname + "/public"));
 
 // If the page the user is on needs an extended header, set the needsExtend to true.
 app.use(function(req, res, next) {
-  res.locals.needsExtend =
-    req.path === "/home" || req.path === "/" || req.path === "/search";
+  res.locals.needsExtend = req.path === "/home" || req.path === "/search";
   next();
 });
 
