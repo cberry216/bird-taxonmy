@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-// '/contact' will be routed through here
+// '/bird-search' will be routed through here
 router.get("/", (req, res) => {
-  res.render("contact");
+  res.render("search/search");
 });
 
 module.exports = router;

@@ -5,8 +5,7 @@ var bodyParser = require("body-parser");
 
 // Bringing in our routes
 var home = require("./routes/home");
-var contact = require("./routes/contact");
-var birdSearch = require("./routes/birdSearch");
+var search = require("./routes/search");
 
 /*******************************************************************************
 |                                   Initial Setup                              |
@@ -41,9 +40,10 @@ app.use(function(req, res, next) {
 // Giving access to our 'public' directory
 app.use(express.static(__dirname + "/public"));
 
-// If the user is on the home page set 'isHome' to true, false otherwise
+// If the page the user is on needs an extended header, set the needsExtend to true.
 app.use(function(req, res, next) {
-  res.locals.isHome = req.path === "/";
+  res.locals.needsExtend =
+    req.path === "/home" || req.path === "/" || req.path === "/search";
   next();
 });
 
@@ -51,10 +51,14 @@ app.use(function(req, res, next) {
 |                                      Routes                                  |
 *******************************************************************************/
 
+// Reroute '/' to '/home'
+app.get("/", (req, res) => {
+  res.redirect(302, "/home");
+});
+
 // Setting our routes to their respective router
-app.use("/", home);
-app.use("/contact", contact);
-app.use("/bird-search", birdSearch);
+app.use("/home", home);
+app.use("/search", search);
 
 /*******************************************************************************
 |                                  Error Handling                              |

@@ -1,46 +1,49 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Bird Taxonomy</title>
-        <link rel="stylesheet" type="text/css" href="/css/base.css">
-        <link rel="stylesheet" type="text/css" href="/css/classes.css">
-        <link rel="stylesheet" type="text/css" href="/css/fonts.css">
-        <link rel="stylesheet" type="text/css" href="/css/ids.css">
-        <link rel="stylesheet" type="text/css" href="/css/images.css">
-        <link rel="stylesheet" type="text/css" href="/css/overwrite.css">
-        <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/futura-renner" type="text/css"/>
-        <link rel="shortcut icon" href="/img/eagle.ico">
 
-    </head>
-    <body class='text-center'>
-        <div class='body-container d-flex w-100 h-100 flex-column'>
+<head>
+    <title>Bird Taxonomy</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/classes.css">
+    <link rel="stylesheet" type="text/css" href="/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/css/ids.css">
+    <link rel="stylesheet" type="text/css" href="/css/images.css">
+    <link rel="stylesheet" type="text/css" href="/css/overwrite.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/futura-renner" type="text/css" />
+    <link rel="shortcut icon" href="/img/eagle.ico">
 
-            {{#if isHome}}
-                <header class='mb-auto container-fluid'>
-                    {{> header}}
-                </header>
-            {{else}}
-                <header class='mb-5 container-fluid'>
-                    {{> header}}
-                </header>
-            {{/if}}
+</head>
 
-            <main>
-                {{{body}}}
-            </main>
+<body class='text-center'>
+    <div class='body-container d-flex w-100 h-100 flex-column'>
 
-            <footer class='mt-auto container-fluid'>
-                {{> footer}}
-            </footer>
+        {{#if needsExtend}}
+        <header class='mb-auto container-fluid'>
+            {{> header}}
+        </header>
+        {{else}}
+        <header class='mb-5 container-fluid'>
+            {{> header}}
+        </header>
+        {{/if}}
 
-        </div>
+        <main>
+            {{{body}}}
+        </main>
 
-        <!-- import bootstrap.js -->
-        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <footer class='mt-auto container-fluid'>
+            {{> footer}}
+        </footer>
 
-        <!-- import jQuery -->
-        <script src="/vendor/js/jquery-3.3.1.min.js"></script>
-            
-    </body>
+    </div>
+
+    <!-- import bootstrap.js -->
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- import jQuery -->
+    <script src="/vendor/js/jquery-3.3.1.min.js"></script>
+
+</body>
+
 </html>
