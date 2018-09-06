@@ -56,6 +56,10 @@
 .nav-link {
   text-shadow: 0 0 2px #ffe8af;
 }
+/* Gives extra padding to the sides of the search buttons */
+.search-button {
+  margin: 0px 5px;
+}
 
 /* Allows for the positioning of the search cover image and name to appear centered on top of each other */
 .search-button-cover {
