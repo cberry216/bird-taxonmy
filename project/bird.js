@@ -7,6 +7,9 @@ var bodyParser = require("body-parser");
 var home = require("./routes/home");
 var search = require("./routes/search");
 
+// Bringing in connection to MongoDB
+var { mongoose } = require("./db/mongoose");
+
 /*******************************************************************************
 |                                   Initial Setup                              |
 *******************************************************************************/
