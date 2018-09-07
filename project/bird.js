@@ -19,6 +19,10 @@ var hbs = handlebars.create({
   defaultLayout: "main"
 });
 
+// Setting up bodyParser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Setting up the app to use Handlebars as the templating engine
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
@@ -42,7 +46,11 @@ app.use(express.static(__dirname + "/public"));
 
 // If the page the user is on needs an extended header, set the needsExtend to true.
 app.use(function(req, res, next) {
-  res.locals.needsExtend = req.path === "/home" || req.path === "/search";
+  res.locals.needsExtend =
+    req.path === "/home" ||
+    req.path === "/search" ||
+    req.path === "/home/" ||
+    req.path === "/search/";
   next();
 });
 
@@ -63,18 +71,18 @@ app.use("/search", search);
 |                                  Error Handling                              |
 *******************************************************************************/
 
-// Handler for 404 errors
-app.use(function(req, res) {
-  res.status(404);
-  res.render("errors/404");
-});
+// // Handler for 404 errors
+// app.use(function(req, res) {
+//   res.status(404);
+//   res.render("errors/404");
+// });
 
-// Handler for 500 errors
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.status(500);
-  res.render("errors/500");
-});
+// // Handler for 500 errors
+// app.use(function(err, req, res, next) {
+//   console.error(err.stack);
+//   res.status(500);
+//   res.render("errors/500");
+// });
 /*******************************************************************************
 |                               Running Application                            |
 *******************************************************************************/

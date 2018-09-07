@@ -4,7 +4,7 @@
 
 /* Sets the font to use Futura Renner Light */
 body {
-  font-family: "FuturaRennerLight" !important;
+  font-family: "FuturaRennerLight", Arial, sans-serif !important;
 }
 
 /* Changes the font color and text shadow of cover titles, buttons, and header brands */
