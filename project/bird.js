@@ -1,24 +1,25 @@
 // Third Party Modules
-var express = require("express");
-var handlebars = require("express-handlebars");
-var bodyParser = require("body-parser");
+const express = require("express");
+const handlebars = require("express-handlebars");
+const bodyParser = require("body-parser");
 
 // Bringing in our routes
-var home = require("./routes/home");
-var search = require("./routes/search");
+const home = require("./routes/home");
+const search = require("./routes/search");
 
-// Bringing in connection to MongoDB
-var { mongoose } = require("./db/mongoose");
+// Bringing in connection to MongoDB and models
+const { mongoose } = require("./db/mongoose");
+const { Bird } = require("./models/bird");
 
 /*******************************************************************************
 |                                   Initial Setup                              |
 *******************************************************************************/
 
 // Initializing our Express app
-var app = express();
+const app = express();
 
 // Creating our Handlebars object
-var hbs = handlebars.create({
+const hbs = handlebars.create({
   defaultLayout: "main"
 });
 

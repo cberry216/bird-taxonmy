@@ -1,5 +1,14 @@
+// Required packages to bring in
 const express = require("express");
+const bird = require("../models/bird");
 const router = express.Router();
+
+// Simplifies code later on
+const Bird = bird.Bird;
+
+/*******************************************************************************
+|                                      Routes                                  |
+*******************************************************************************/
 
 // This is the route for the main search page
 router.get("/", (req, res) => {
@@ -25,11 +34,16 @@ router.get("/location", (req, res) => {
 router.get("/results", (req, res) => {
   var birdData = {};
   if (req.query.searchType === "name" && req.query.birdName) {
-    birdData = {
-      type: "name",
-      name: req.query.birdName
-    };
-    res.render("search/results", { birdData });
+    // birdData = {
+    //   type: "name",
+    //   name: req.query.birdName
+    // };
+    Bird.findOne((err, birds) => {
+      if (err) res.render("errors/500");
+      res.render("search/results", { birdData: birds });
+    });
+    // res.render("search/results", { birdData });
+    // res.send(birdData);
   } else if (req.query.searchType === "location" && req.query.location) {
     birdData = {
       type: "location"
