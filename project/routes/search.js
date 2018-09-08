@@ -32,26 +32,25 @@ router.get("/location", (req, res) => {
 
 // This is the route for results that is redirected from '/process'
 router.get("/results", (req, res) => {
-  var birdData = {};
   if (req.query.searchType === "name" && req.query.birdName) {
-    // birdData = {
-    //   type: "name",
-    //   name: req.query.birdName
-    // };
-    Bird.findOne((err, birds) => {
+    // Search for birds with the given name
+    // TODO: Replace this with node-suggestive-search
+    Bird.findOne({ name: req.query.birdName.toUpperCase() }, (err, birds) => {
+      // If there is an error, redirect to 500 error page
       if (err) res.render("errors/500");
-      res.render("search/results", { birdData: birds });
+      // If more than 0 birds are returned, render results page with bird data
+      if (birds) res.render("search/results", { name: true, birdData: birds });
+      // If no birds are returned, render results with null bird data
+      else res.render("search/results", { birdData: null });
     });
-    // res.render("search/results", { birdData });
-    // res.send(birdData);
   } else if (req.query.searchType === "location" && req.query.location) {
     birdData = {
-      type: "location"
+      location: true
     };
     res.render("search/results", { birdData });
   } else if (req.query.searchType === "observation" && req.query.colors) {
     birdData = {
-      type: "observation"
+      observation: true
     };
     res.render("search/results", { birdData });
   } else {

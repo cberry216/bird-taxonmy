@@ -1,4 +1,18 @@
 {{! This is where the results will be shown; undecided if results will be new page or displayed on the same page. }}
-<h1>
-    Name: {{birdData.name}}
-</h1>
+<!-- -->
+<div>
+    {{#if birdData}}
+    <h1></h1>
+    {{#if observation}}
+    <h1></h1>
+    {{/if}} {{#if name}}
+    <h1>Name: {{birdData.name}}</h1>
+    <h1>Length: {{birdData.length}}</h1>
+    <h1>Wingspan: {{birdData.wingspan}}</h1>
+    <h1>Weight: {{birdData.weight}}</h1>
+    {{/if}} {{#if location}}
+    <h1></h1>
+    {{/if}} {{else}}
+    <h1>No results</h1>
+    {{/if}}
+</div>
