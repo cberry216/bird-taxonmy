@@ -2,17 +2,14 @@
 <!-- -->
 <div>
     {{#if birdData}}
-    <h1></h1>
-    {{#if observation}}
-    <h1></h1>
-    {{/if}} {{#if name}}
-    <h1>Name: {{birdData.name}}</h1>
-    <h1>Length: {{birdData.length}}</h1>
-    <h1>Wingspan: {{birdData.wingspan}}</h1>
-    <h1>Weight: {{birdData.weight}}</h1>
-    {{/if}} {{#if location}}
-    <h1></h1>
-    {{/if}} {{else}}
+    <div>
+        {{#each birdData}}
+        <div>
+            <h1>Name: {{entry.name}}</h1>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
     <h1>No results</h1>
     {{/if}}
 </div>

@@ -1,5 +1,6 @@
 // Required packages to bring in
 const express = require("express");
+const ssearch = require("smart-search");
 const bird = require("../models/bird");
 const router = express.Router();
 
@@ -33,15 +34,15 @@ router.get("/location", (req, res) => {
 // This is the route for results that is redirected from '/process'
 router.get("/results", (req, res) => {
   if (req.query.searchType === "name" && req.query.birdName) {
-    // Search for birds with the given name
-    // TODO: Replace this with node-suggestive-search
-    Bird.findOne({ name: req.query.birdName.toUpperCase() }, (err, birds) => {
-      // If there is an error, redirect to 500 error page
-      if (err) res.render("errors/500");
-      // If more than 0 birds are returned, render results page with bird data
-      if (birds) res.render("search/results", { name: true, birdData: birds });
-      // If no birds are returned, render results with null bird data
-      else res.render("search/results", { birdData: null });
+    // Search for birds with the given name using 'smart-search'
+    // ? is this fast; I have to get all DB entries before searching them ?
+    Bird.find((err, birds) => {
+      if (err) console.log(err);
+      if (birds)
+        res.render("search/results", {
+          name: true,
+          birdData: ssearch(birds, [req.query.birdName], { name: true })
+        });
     });
   } else if (req.query.searchType === "location" && req.query.location) {
     birdData = {
