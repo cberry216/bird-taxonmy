@@ -52,6 +52,36 @@
   display: block;
 }
 
+/* Set the width of the search bar to 70% */
+.name-search {
+  width: 70%;
+}
+
+/* Change color of input and set the bottom border to dark color */
+.name-search-bar input,
+.name-search-bar input:focus {
+  background-color: #667937;
+  color: #ffc125;
+  font-size: 2em;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #434b2f;
+  text-align: center;
+}
+
+/* Change color of submit button on name search page */
+.name-search-submit {
+  background-color: #667937;
+  color: #434b2f;
+}
+
+/* Change the color of the submit button when hovering */
+.name-search-submit:hover {
+  background-color: #434b2f;
+  color: #667937;
+  /* box-shadow: 0 0 10px 3px #ffe8af; */
+}
+
 /* Gives each navbar link a small glow */
 .nav-link {
   text-shadow: 0 0 2px #ffe8af;

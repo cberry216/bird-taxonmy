@@ -22,6 +22,16 @@ body {
   border: #525c3a !important;
 }
 
+/* Overwrite margin of search-bar to center it */
+.name-search {
+  margin: 25% auto !important;
+}
+
+/* Overwrite the default border of bootstrap button */
+.name-search-submit {
+  border: 1px solid #434b2f !important;
+}
+
 /* Overwrite bootstrap font color for nav links */
 .nav-link {
   color: #ffc125 !important;
@@ -31,4 +41,9 @@ body {
 .nav-link:hover {
   background-color: #525c3a;
   text-shadow: 0 0 0px;
+}
+
+/* Overwrite placeholder color darker */
+::placeholder {
+  color: #434b2f !important;
 }
