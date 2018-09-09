@@ -7,6 +7,7 @@ db.birds.remove({});
 //   length: 0,
 //   wingspan: 0,
 //   weight: 0,
+//   imagePath: "",
 //   description: {
 //     summary: "",
 //     voice: "",

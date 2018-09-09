@@ -65,9 +65,14 @@
   font-size: 2em;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid #434b2f;
+  border-bottom: 2px solid #434b2f;
   text-align: center;
 }
+
+/* Remove the padding on forms to fit in page */
+/* .name-search-form {
+  padding: 0 !important;
+} */
 
 /* Change color of submit button on name search page */
 .name-search-submit {
@@ -79,7 +84,6 @@
 .name-search-submit:hover {
   background-color: #434b2f;
   color: #667937;
-  /* box-shadow: 0 0 10px 3px #ffe8af; */
 }
 
 /* Gives each navbar link a small glow */

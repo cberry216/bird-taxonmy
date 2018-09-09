@@ -17,6 +17,9 @@ const BirdSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  imagePath: {
+    type: String
+  },
   description: {
     summary: String,
     voice: String,
