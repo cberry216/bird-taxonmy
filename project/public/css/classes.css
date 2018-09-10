@@ -2,6 +2,13 @@
  *  This is were CSS for classes ONLY goes
  */
 
+/* Set the back button to the top left of the screen */
+.back-button {
+  left: 0;
+  margin-left: 5%;
+  position: absolute;
+}
+
 /* Set the width of the 'cover-title' div on the homepage */
 .cover-title {
   width: 93%;
@@ -69,19 +76,16 @@
   text-align: center;
 }
 
-/* Remove the padding on forms to fit in page */
-/* .name-search-form {
-  padding: 0 !important;
-} */
-
-/* Change color of submit button on name search page */
-.name-search-submit {
+/* Change color of submit and back button on name search page */
+.name-search-submit,
+.back-button {
   background-color: #667937;
   color: #434b2f;
 }
 
-/* Change the color of the submit button when hovering */
-.name-search-submit:hover {
+/* Change the color of the submit and back button when hovering */
+.name-search-submit:hover,
+.back-button:hover {
   background-color: #434b2f;
   color: #667937;
 }

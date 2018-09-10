@@ -27,8 +27,9 @@ body {
   margin: 25% auto !important;
 }
 
-/* Overwrite the default border of bootstrap button */
-.name-search-submit {
+/* Overwrite the default border of submit and back buttons */
+.name-search-submit,
+.back-button {
   border: 2px solid #434b2f !important;
 }
 

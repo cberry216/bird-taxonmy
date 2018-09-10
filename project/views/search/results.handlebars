@@ -1,7 +1,13 @@
 {{! This is where the results will be shown; undecided if results will be new page or displayed on the same page. }}
 <!-- -->
 <div>
-    {{#if birdData}}
+    {{#if name}}
+    <button class="back-button" onclick="location.href='/search/name'"><i class="fas fa-arrow-left"></i></button>
+    {{ else if location}}
+    <button class="back-button" onclick="location.href='/search/location'"><i class="fas fa-arrow-left"></i></button>
+    {{else}}
+    <button class="back-button" onclick="location.href='/search/observation'"><i class="fas fa-arrow-left"></i></button>
+    {{/if}} {{#if birdData}}
     <div>
         {{#each birdData}}
         <div>
