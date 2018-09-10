@@ -5,6 +5,10 @@ const BirdSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  birdType: {
+    type: String,
+    required: true
+  },
   length: {
     type: Number,
     required: true
@@ -20,58 +24,117 @@ const BirdSchema = new mongoose.Schema({
   imagePath: {
     type: String
   },
+  gender: {
+    type: String,
+    enum: ["MALE", "FEMALE", "BOTH"],
+    default: "BOTH"
+  },
+  nonbreeding: {
+    type: Boolean
+  },
   description: {
     summary: String,
     voice: String,
-    color: [
-      {
-        bodyPart: {
-          type: String,
-          enum: [
-            "SCAPULAR",
-            "BREAST",
-            "BELLY",
-            "BILL",
-            "HEAD",
-            "WING",
-            "BACK",
-            "TAIL"
-          ],
-          required: true
-        },
-        style: {
-          type: String,
-          enum: ["NONE", "STRIPED", "DOTTED", "MIXED", "FADE", "IRIDESCENT"],
-          default: "NONE"
-        },
-        colors: [
-          {
-            color: {
-              type: String,
-              required: true,
-              enum: [
-                "NONE",
-                "GREEN",
-                "BLUE",
-                "TAN",
-                "RED",
-                "PINK",
-                "ORANGE",
-                "WHITE",
-                "BROWN",
-                "BLACK",
-                "GREY",
-                "YELLOW",
-                "RUFOUS",
-                "OLIVE",
-                "PURPLE",
-                "BUFF"
-              ]
+    color: {
+      nonbreeding: [
+        {
+          bodyPart: {
+            type: String,
+            enum: [
+              "BREAST",
+              "BELLY",
+              "BILL",
+              "HEAD",
+              "NECK",
+              "WING",
+              "BACK",
+              "TAIL"
+            ],
+            required: true
+          },
+          style: {
+            type: String,
+            enum: ["NONE", "STRIPED", "SPOTTED", "MIXED", "FADE", "IRIDESCENT"],
+            default: "NONE"
+          },
+          colors: [
+            {
+              color: {
+                type: String,
+                required: true,
+                enum: [
+                  "NONE",
+                  "GREEN",
+                  "BLUE",
+                  "TAN",
+                  "RED",
+                  "PINK",
+                  "ORANGE",
+                  "WHITE",
+                  "BROWN",
+                  "BLACK",
+                  "GREY",
+                  "YELLOW",
+                  "RUFOUS",
+                  "OLIVE",
+                  "PURPLE"
+                ]
+              }
             }
-          }
-        ]
-      }
-    ]
+          ]
+        }
+      ],
+      breeding: [
+        {
+          bodyPart: {
+            type: String,
+            enum: [
+              "BREAST",
+              "BELLY",
+              "BILL",
+              "HEAD",
+              "NAPE",
+              "NECK",
+              "WING",
+              "BACK",
+              "TAIL"
+            ],
+            required: true
+          },
+          style: {
+            type: String,
+            enum: ["NONE", "STRIPED", "SPOTTED", "MIXED", "FADE", "IRIDESCENT"],
+            default: "NONE"
+          },
+          colors: [
+            {
+              color: {
+                type: String,
+                required: true,
+                enum: [
+                  "NONE",
+                  "GREEN",
+                  "BLUE",
+                  "TAN",
+                  "RED",
+                  "PINK",
+                  "ORANGE",
+                  "WHITE",
+                  "BROWN",
+                  "BLACK",
+                  "GREY",
+                  "YELLOW",
+                  "RUFOUS",
+                  "OLIVE",
+                  "PURPLE",
+                  "BUFF"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
   },
   location: [
     {
