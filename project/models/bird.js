@@ -41,13 +41,14 @@ const BirdSchema = new mongoose.Schema({
           bodyPart: {
             type: String,
             enum: [
-              "BREAST",
+              "BACK",
               "BELLY",
               "BILL",
+              "BREAST",
               "HEAD",
+              "NAPE",
               "NECK",
               "WING",
-              "BACK",
               "TAIL"
             ],
             required: true
@@ -89,14 +90,14 @@ const BirdSchema = new mongoose.Schema({
           bodyPart: {
             type: String,
             enum: [
-              "BREAST",
+              "BACK",
               "BELLY",
               "BILL",
+              "BREAST",
               "HEAD",
               "NAPE",
               "NECK",
               "WING",
-              "BACK",
               "TAIL"
             ],
             required: true

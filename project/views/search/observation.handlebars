@@ -1,3 +1,624 @@
 <div>
     <h1>Observation Search</h1>
+    <div class="container">
+        <form action="/search/results" method="GET" class="col s12 observation-search-form">
+            <div class="row observation-search">
+                <div class="input-field col s6 center">
+                    <input type="hidden" name="searchType" value="observation"> {{!-- Color Select for Back --}}
+                    <div class="observation-search-color-options" id="back-color-options">
+                        <h3>Back</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backGreen" name="backGreen">
+                            <label class="form-check-label" for="backGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backBlue" name="backBlue">
+                            <label class="form-check-label" for="backBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backTan" name="backTan">
+                            <label class="form-check-label" for="backTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backRed" name="backRed">
+                            <label class="form-check-label" for="backRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backPink" name="backPink">
+                            <label class="form-check-label" for="backPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backOrange" name="backOrange">
+                            <label class="form-check-label" for="backOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backWhite" name="backWhite">
+                            <label class="form-check-label" for="backWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backBrown" name="backBrown">
+                            <label class="form-check-label" for="backBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backBlack" name="backBlack">
+                            <label class="form-check-label" for="backBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backGrey" name="backGrey">
+                            <label class="form-check-label" for="backGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backYellow" name="backYellow">
+                            <label class="form-check-label" for="backYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backRufous" name="backRufous">
+                            <label class="form-check-label" for="backRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backOlive" name="backOlive">
+                            <label class="form-check-label" for="backOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="backPurple" name="backPurple">
+                            <label class="form-check-label" for="backPurple">Purple</label>
+                        </div>
+                        <label for="backStyleSelect">Style:</label>
+                        <select id="backStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Belly --}}
+                    <div class="observation-search-color-options" id="belly-color-options">
+                        <h3>Belly</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyGreen" name="bellyGreen">
+                            <label class="form-check-label" for="bellyGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyBlue" name="bellyBlue">
+                            <label class="form-check-label" for="bellyBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyTan" name="bellyTan">
+                            <label class="form-check-label" for="bellyTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyRed" name="bellyRed">
+                            <label class="form-check-label" for="bellyRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyPink" name="bellyPink">
+                            <label class="form-check-label" for="bellyPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyOrange" name="bellyOrange">
+                            <label class="form-check-label" for="bellyOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyWhite" name="bellyWhite">
+                            <label class="form-check-label" for="bellyWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyBrown" name="bellyBrown">
+                            <label class="form-check-label" for="bellyBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyBlack" name="bellyBlack">
+                            <label class="form-check-label" for="bellyBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyGrey" name="bellyGrey">
+                            <label class="form-check-label" for="bellyGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyYellow" name="bellyYellow">
+                            <label class="form-check-label" for="bellyYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyRufous" name="bellyRufous">
+                            <label class="form-check-label" for="bellyRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyOlive" name="bellyOlive">
+                            <label class="form-check-label" for="bellyOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="bellyPurple" name="bellyPurple">
+                            <label class="form-check-label" for="bellyPurple">Purple</label>
+                        </div>
+                        <label for="bellyStyleSelect">Style:</label>
+                        <select id="bellyStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Bill --}}
+                    <div class="observation-search-color-options" id="bill-color-options">
+                        <h3>Bill</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billGreen" name="billGreen">
+                            <label class="form-check-label" for="billGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billBlue" name="billBlue">
+                            <label class="form-check-label" for="billBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billTan" name="billTan">
+                            <label class="form-check-label" for="billTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billRed" name="billRed">
+                            <label class="form-check-label" for="billRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billPink" name="billPink">
+                            <label class="form-check-label" for="billPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billOrange" name="billOrange">
+                            <label class="form-check-label" for="billOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billWhite" name="billWhite">
+                            <label class="form-check-label" for="billWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billBrown" name="billBrown">
+                            <label class="form-check-label" for="billBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billBlack" name="billBlack">
+                            <label class="form-check-label" for="billBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billGrey" name="billGrey">
+                            <label class="form-check-label" for="billGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billYellow" name="billYellow">
+                            <label class="form-check-label" for="billYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billRufous" name="billRufous">
+                            <label class="form-check-label" for="billRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billOlive" name="billOlive">
+                            <label class="form-check-label" for="billOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="billPurple" name="billPurple">
+                            <label class="form-check-label" for="billPurple">Purple</label>
+                        </div>
+                        <label for="billStyleSelect">Style:</label>
+                        <select id="billStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Breast --}}
+                    <div class="observation-search-color-options" id="breast-color-options">
+                        <h3>Belly</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastGreen" name="breastGreen">
+                            <label class="form-check-label" for="breastGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastBlue" name="breastBlue">
+                            <label class="form-check-label" for="breastBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastTan" name="breastTan">
+                            <label class="form-check-label" for="breastTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastRed" name="breastRed">
+                            <label class="form-check-label" for="breastRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastPink" name="breastPink">
+                            <label class="form-check-label" for="breastPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastOrange" name="breastOrange">
+                            <label class="form-check-label" for="breastOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastWhite" name="breastWhite">
+                            <label class="form-check-label" for="breastWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastBrown" name="breastBrown">
+                            <label class="form-check-label" for="breastBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastBlack" name="breastBlack">
+                            <label class="form-check-label" for="breastBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastGrey" name="breastGrey">
+                            <label class="form-check-label" for="breastGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastYellow" name="breastYellow">
+                            <label class="form-check-label" for="breastYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastRufous" name="breastRufous">
+                            <label class="form-check-label" for="breastRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastOlive" name="breastOlive">
+                            <label class="form-check-label" for="breastOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="breastPurple" name="breastPurple">
+                            <label class="form-check-label" for="breastPurple">Purple</label>
+                        </div>
+                        <label for="breastStyleSelect">Style:</label>
+                        <select id="breastStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Head --}}
+                    <div class="observation-search-color-options" id="head-color-options">
+                        <h3>Head</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headGreen" name="headGreen">
+                            <label class="form-check-label" for="headGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headBlue" name="headBlue">
+                            <label class="form-check-label" for="headBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headTan" name="headTan">
+                            <label class="form-check-label" for="headTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headRed" name="headRed">
+                            <label class="form-check-label" for="headRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headPink" name="headPink">
+                            <label class="form-check-label" for="headPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headOrange" name="headOrange">
+                            <label class="form-check-label" for="headOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headWhite" name="headWhite">
+                            <label class="form-check-label" for="headWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headBrown" name="headBrown">
+                            <label class="form-check-label" for="headBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headBlack" name="headBlack">
+                            <label class="form-check-label" for="headBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headGrey" name="headGrey">
+                            <label class="form-check-label" for="headGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headYellow" name="headYellow">
+                            <label class="form-check-label" for="headYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headRufous" name="headRufous">
+                            <label class="form-check-label" for="headRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headOlive" name="headOlive">
+                            <label class="form-check-label" for="headOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="headPurple" name="headPurple">
+                            <label class="form-check-label" for="headPurple">Purple</label>
+                        </div>
+                        <label for="headStyleSelect">Style:</label>
+                        <select id="headStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Nape --}}
+                    <div class="observation-search-color-options" id="nape-color-options">
+                        <h3>Nape</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeGreen" name="napeGreen">
+                            <label class="form-check-label" for="napeGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeBlue" name="napeBlue">
+                            <label class="form-check-label" for="napeBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeTan" name="napeTan">
+                            <label class="form-check-label" for="napeTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeRed" name="napeRed">
+                            <label class="form-check-label" for="napeRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napePink" name="napePink">
+                            <label class="form-check-label" for="napePink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeOrange" name="napeOrange">
+                            <label class="form-check-label" for="napeOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeWhite" name="napeWhite">
+                            <label class="form-check-label" for="napeWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeBrown" name="napeBrown">
+                            <label class="form-check-label" for="napeBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeBlack" name="napeBlack">
+                            <label class="form-check-label" for="napeBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeGrey" name="napeGrey">
+                            <label class="form-check-label" for="napeGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeYellow" name="napeYellow">
+                            <label class="form-check-label" for="napeYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeRufous" name="napeRufous">
+                            <label class="form-check-label" for="napeRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napeOlive" name="napeOlive">
+                            <label class="form-check-label" for="napeOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="napePurple" name="napePurple">
+                            <label class="form-check-label" for="napePurple">Purple</label>
+                        </div>
+                        <label for="napeStyleSelect">Style:</label>
+                        <select id="napeStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Neck --}}
+                    <div class="observation-search-color-options" id="neck-color-options">
+                        <h3>Neck</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckGreen" name="neckGreen">
+                            <label class="form-check-label" for="neckGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckBlue" name="neckBlue">
+                            <label class="form-check-label" for="neckBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckTan" name="neckTan">
+                            <label class="form-check-label" for="neckTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckRed" name="neckRed">
+                            <label class="form-check-label" for="neckRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckPink" name="neckPink">
+                            <label class="form-check-label" for="neckPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckOrange" name="neckOrange">
+                            <label class="form-check-label" for="neckOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckWhite" name="neckWhite">
+                            <label class="form-check-label" for="neckWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckBrown" name="neckBrown">
+                            <label class="form-check-label" for="neckBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckBlack" name="neckBlack">
+                            <label class="form-check-label" for="neckBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckGrey" name="neckGrey">
+                            <label class="form-check-label" for="neckGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckYellow" name="neckYellow">
+                            <label class="form-check-label" for="neckYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckRufous" name="neckRufous">
+                            <label class="form-check-label" for="neckRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckOlive" name="neckOlive">
+                            <label class="form-check-label" for="neckOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="neckPurple" name="neckPurple">
+                            <label class="form-check-label" for="neckPurple">Purple</label>
+                        </div>
+                        <label for="neckStyleSelect">Style:</label>
+                        <select id="neckStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Tail --}}
+                    <div class="observation-search-color-options" id="tail-color-options">
+                        <h3>tail</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailGreen" name="tailGreen">
+                            <label class="form-check-label" for="tailGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailBlue" name="tailBlue">
+                            <label class="form-check-label" for="tailBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailTan" name="tailTan">
+                            <label class="form-check-label" for="tailTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailRed" name="tailRed">
+                            <label class="form-check-label" for="tailRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailPink" name="tailPink">
+                            <label class="form-check-label" for="tailPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailOrange" name="tailOrange">
+                            <label class="form-check-label" for="tailOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailWhite" name="tailWhite">
+                            <label class="form-check-label" for="tailWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailBrown" name="tailBrown">
+                            <label class="form-check-label" for="tailBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailBlack" name="tailBlack">
+                            <label class="form-check-label" for="tailBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailGrey" name="tailGrey">
+                            <label class="form-check-label" for="tailGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailYellow" name="tailYellow">
+                            <label class="form-check-label" for="tailYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailRufous" name="tailRufous">
+                            <label class="form-check-label" for="tailRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailOlive" name="tailOlive">
+                            <label class="form-check-label" for="tailOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tailPurple" name="tailPurple">
+                            <label class="form-check-label" for="tailPurple">Purple</label>
+                        </div>
+                        <label for="tailStyleSelect">Style:</label>
+                        <select id="tailStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                    {{!-- Color Select for Wings --}}
+                    <div class="observation-search-color-options" id="wings-color-options">
+                        <h3>wings</h3>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsGreen" name="wingsGreen">
+                            <label class="form-check-label" for="wingsGreen">Green</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsBlue" name="wingsBlue">
+                            <label class="form-check-label" for="wingsBlue">Blue</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsTan" name="wingsTan">
+                            <label class="form-check-label" for="wingsTan">Tan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsRed" name="wingsRed">
+                            <label class="form-check-label" for="wingsRed">Red</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsPink" name="wingsPink">
+                            <label class="form-check-label" for="wingsPink">Pink</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsOrange" name="wingsOrange">
+                            <label class="form-check-label" for="wingsOrange">Orange</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsWhite" name="wingsWhite">
+                            <label class="form-check-label" for="wingsWhite">White</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsBrown" name="wingsBrown">
+                            <label class="form-check-label" for="wingsBrown">Brown</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsBlack" name="wingsBlack">
+                            <label class="form-check-label" for="wingsBlack">Black</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsGrey" name="wingsGrey">
+                            <label class="form-check-label" for="wingsGrey">Grey</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsYellow" name="wingsYellow">
+                            <label class="form-check-label" for="wingsYellow">Yellow</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsRufous" name="wingsRufous">
+                            <label class="form-check-label" for="wingsRufous">Rufous</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsOlive" name="wingsOlive">
+                            <label class="form-check-label" for="wingsOlive">Olive</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="wingsPurple" name="wingsPurple">
+                            <label class="form-check-label" for="wingsPurple">Purple</label>
+                        </div>
+                        <label for="wingsStyleSelect">Style:</label>
+                        <select id="wingsStyleSelect" class="custom-select">
+                            <option value="none">None/Multi-Colored</option>
+                            <option value="striped">Striped</option>
+                            <option value="spotted">Spotted</option>
+                            <option value="mixed">Mixed</option>
+                            <option value="fade">Fade</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-default name-search-submit" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
 </div>

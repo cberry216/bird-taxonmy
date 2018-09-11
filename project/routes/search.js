@@ -49,7 +49,13 @@ router.get("/results", (req, res) => {
       location: true
     };
     res.render("search/results", { birdData });
-  } else if (req.query.searchType === "observation" && req.query.colors) {
+  } else if (req.query.searchType === "observation") {
+    options = {};
+    for (var propName in req.query) {
+      if (req.query.hasOwnProperty(propName)) {
+        // if (propName == "backGreen") options.back = "green";
+      }
+    }
     birdData = {
       observation: true
     };
